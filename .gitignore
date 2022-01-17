@@ -1,0 +1,18 @@
+# KiCad
+*_autosave*
+*-backups/
+fab/
+gerber/
+simulation/
+
+*.bak
+*-bak
+*.csv
+*.log
+
+latbox_cycloneV.xml
+fp-info-cache
+
+# other backup files
+*~
+\#*#
