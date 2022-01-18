@@ -1,0 +1,29 @@
+Drill report for latbox_cycloneV.kicad_pcb
+Created on Wed Jan 19 11:26:26 2022
+
+Copper Layer Stackup:
+    =============================================================
+    L1 :  F.Cu                      front
+    L2 :  In1.Cu                    in1
+    L3 :  In2.Cu                    in2
+    L4 :  B.Cu                      back
+
+
+Drill file 'latbox_cycloneV-PTH.drl' contains
+    plated through holes:
+    =============================================================
+    T1  0.400mm  0.0157"  (26 holes)
+    T2  1.000mm  0.0394"  (40 holes)
+    T3  1.270mm  0.0500"  (8 holes)
+    T4  1.524mm  0.0600"  (32 holes)
+    T5  3.000mm  0.1181"  (19 holes)
+    T6  3.200mm  0.1260"  (6 holes)
+
+    Total plated holes count 131
+
+
+Drill file 'latbox_cycloneV-NPTH.drl' contains
+    unplated through holes:
+    =============================================================
+
+    Total unplated holes count 0

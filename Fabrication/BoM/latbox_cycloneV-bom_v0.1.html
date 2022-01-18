@@ -1,0 +1,370 @@
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>KiBot Bill of Materials</title>
+<style>
+ .cell-title { vertical-align: bottom; }
+ .cell-info { vertical-align: top; padding: 1em;}
+ .cell-stats { vertical-align: top; padding: 1em;}
+ .title { font-size:2.5em; font-weight: bold; }
+ .subtitle { font-size:1.5em; font-weight: bold; }
+ .h2 { font-size:1.5em; font-weight: bold; }
+ .td-empty0 { text-align: center; background-color: #F57676;}
+ .td-gen0 { text-align: center; background-color: #DCF5E4;}
+ .td-kicad0 { text-align: center; background-color: #F5DCA9;}
+ .td-user0 { text-align: center; background-color: #DCEFF5;}
+ .td-empty1 { text-align: center; background-color: #FF8080;}
+ .td-gen1 { text-align: center; background-color: #E6FFEE;}
+ .td-kicad1 { text-align: center; background-color: #FFE6B3;}
+ .td-user1 { text-align: center; background-color: #E6F9FF;}
+ .color-ref { margin: 25px 0; }
+ .color-ref th { text-align: left }
+ .color-ref td { padding: 5px 20px; }
+ .head-table { margin-bottom: 2em; }
+ .tg-sort-header::-moz-selection{background:0 0}
+ .tg-sort-header::selection{background:0 0}.tg-sort-header{cursor:pointer}
+ .tg-sort-header:after{content:'';float:right;border-width:0 5px 5px;border-style:solid;
+                       border-color:#ffffff transparent;visibility:hidden;opacity:.6}
+ .tg-sort-header:hover:after{visibility:visible}
+ .tg-sort-asc:after,.tg-sort-asc:hover:after,.tg-sort-desc:after{visibility:visible;opacity:1}
+ .tg-sort-desc:after{border-bottom:none;border-width:5px 5px 0}
+
+ .content-table {
+   border-collapse:
+   collapse;
+   margin-top: 5px;
+   margin-bottom: 4em;
+   font-size: 0.9em;
+   font-family: sans-serif;
+   min-width: 400px;
+   border-radius: 5px 5px 0 0;
+   overflow: hidden;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+ }
+ .content-table thead tr { background-color: #0e4e8e; color: #ffffff; text-align: left; }
+ .content-table th, .content-table td { padding: 12px 15px; }
+ .content-table tbody tr { border-bottom: 1px solid #dddddd; }
+ .content-table tbody tr:nth-of-type(even) { background-color: #f3f3f3; }
+ .content-table tbody tr:last-of-type { border-bottom: 2px solid #0e4e8e; }
+ .content-table * tr:hover > td { background-color: @bgl@ !important }
+
+ .content-table {
+   border-collapse:
+   collapse;
+   margin-top: 5px;
+   margin-bottom: 4em;
+   font-size: 0.9em;
+   font-family: sans-serif;
+   min-width: 400px;
+   border-radius: 5px 5px 0 0;
+   overflow: hidden;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+ }
+ .content-table thead tr { background-color: @bg@; color: #ffffff; text-align: left; }
+ .content-table th, .content-table td { padding: 12px 15px; }
+ .content-table tbody tr { border-bottom: 1px solid #dddddd; }
+ .content-table tbody tr:nth-of-type(even) { background-color: #f3f3f3; }
+ .content-table tbody tr:last-of-type { border-bottom: 2px solid @bg@; }
+ .content-table * tr:hover > td { background-color: #3e7ebe !important }
+</style>
+</head>
+<body>
+<table class="head-table">
+<tr>
+ <td rowspan="2">
+  <img src="data:image/png;base64,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" alt="Logo" width="200" height="200">
+ </td>
+ <td colspan="2" class="cell-title">
+  <div class="title">KiBot Bill of Materials</div>
+ </td>
+</tr>
+<tr>
+ <td class="cell-info">
+   <b>Schematic</b>: latbox_cycloneV<br>
+   <b>Variant</b>: default<br>
+   <b>Revision</b>: v0.1<br>
+   <b>Date</b>: 2022-01-19_11-24-50<br>
+   <b>KiCad Version</b>: 6.0.0-d3dd2cf0fa~116~ubuntu21.10.1<br>
+ </td>
+ <td class="cell-stats">
+   <b>Component Groups</b>: 11<br>
+   <b>Component Count</b>: 194 (per PCB)<br>
+
+   <b>Fitted Components</b>: 194 (per PCB)<br>
+   <b>Number of PCBs</b>: 1<br>
+   <b>Total Components</b>: 194 (for 1 PCBs)<br>
+ </td>
+</tr>
+</table>
+<h2>Component Groups</h2>
+<table class="content-table">
+ <thead>
+  <tr>
+   <th class="th-gen">Row</th>
+   <th class="th-kicad">Referencias</th>
+   <th class="th-kicad">Parte</th>
+   <th class="th-kicad">Valor</th>
+   <th class="th-user">P/N</th>
+   <th class="th-user">Fabricante</th>
+   <th class="th-user">Cod. Digi-Key</th>
+   <th class="th-kicad">Footprint</th>
+   <th class="th-user">Descripción</th>
+   <th class="th-gen">Quantity Per PCB</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr id="0">
+   <td class="td-gen0">1</td>
+   <td class="td-kicad0"><div id="C316"></div><div id="C315"></div><div id="C314"></div><div id="C313"></div><div id="C312"></div><div id="C311"></div><div id="C310"></div><div id="C309"></div><div id="C308"></div><div id="C307"></div><div id="C306"></div><div id="C305"></div><div id="C304"></div><div id="C303"></div><div id="C302"></div><div id="C301"></div><div id="C216"></div><div id="C215"></div><div id="C214"></div><div id="C213"></div><div id="C212"></div><div id="C211"></div><div id="C210"></div><div id="C209"></div><div id="C208"></div><div id="C207"></div><div id="C206"></div><div id="C205"></div><div id="C204"></div><div id="C203"></div><div id="C202"></div><div id="C201"></div>C201 C202 C203 C204 C205 C206 C207 C208 C209 C210 C211 C212 C213 C214 C215 C216 C301 C302 C303 C304 C305 C306 C307 C308 C309 C310 C311 C312 C313 C314 C315 C316</td>
+   <td class="td-kicad0">C</td>
+   <td class="td-kicad0">2.2 µF</td>
+   <td class="td-user0"></td>
+   <td class="td-user0"></td>
+   <td class="td-user0"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad0">C_0402_1005Metric</td>
+   <td class="td-user0"></td>
+   <td class="td-gen0">32</td>
+  </tr>
+  <tr id="1">
+   <td class="td-gen1">2</td>
+   <td class="td-kicad1"><div id="D316"></div><div id="D315"></div><div id="D314"></div><div id="D313"></div><div id="D312"></div><div id="D311"></div><div id="D310"></div><div id="D309"></div><div id="D308"></div><div id="D307"></div><div id="D306"></div><div id="D305"></div><div id="D304"></div><div id="D303"></div><div id="D302"></div><div id="D301"></div><div id="D216"></div><div id="D215"></div><div id="D214"></div><div id="D213"></div><div id="D212"></div><div id="D211"></div><div id="D210"></div><div id="D209"></div><div id="D208"></div><div id="D207"></div><div id="D206"></div><div id="D205"></div><div id="D204"></div><div id="D203"></div><div id="D202"></div><div id="D201"></div>D201 D202 D203 D204 D205 D206 D207 D208 D209 D210 D211 D212 D213 D214 D215 D216 D301 D302 D303 D304 D305 D306 D307 D308 D309 D310 D311 D312 D313 D314 D315 D316</td>
+   <td class="td-kicad1">1N4148WT</td>
+   <td class="td-kicad1">1N4148WT</td>
+   <td class="td-user1"></td>
+   <td class="td-user1"></td>
+   <td class="td-user1"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad1">D_SOD-523</td>
+   <td class="td-user1"></td>
+   <td class="td-gen1">32</td>
+  </tr>
+  <tr id="2">
+   <td class="td-gen0">3</td>
+   <td class="td-kicad0"><div id="H106"></div><div id="H105"></div><div id="H104"></div><div id="H103"></div><div id="H102"></div><div id="H101"></div>H101 H102 H103 H104 H105 H106</td>
+   <td class="td-kicad0">MountingHole_Pad</td>
+   <td class="td-kicad0">~</td>
+   <td class="td-user0"></td>
+   <td class="td-user0"></td>
+   <td class="td-user0"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad0">MountingHole_3.2mm_M3_ISO14580_Pad</td>
+   <td class="td-user0"></td>
+   <td class="td-gen0">6</td>
+  </tr>
+  <tr id="3">
+   <td class="td-gen1">4</td>
+   <td class="td-kicad1"><div id="J304"></div><div id="J303"></div><div id="J302"></div><div id="J301"></div><div id="J204"></div><div id="J203"></div><div id="J202"></div><div id="J201"></div>J201 J202 J203 J204 J301 J302 J303 J304</td>
+   <td class="td-kicad1">Conn_Coaxial</td>
+   <td class="td-kicad1">Conn_Coaxial</td>
+   <td class="td-user1"></td>
+   <td class="td-user1"></td>
+   <td class="td-user1"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad1">BNC_TEConnectivity_1478204_Vertical</td>
+   <td class="td-user1"></td>
+   <td class="td-gen1">8</td>
+  </tr>
+  <tr id="4">
+   <td class="td-gen0">5</td>
+   <td class="td-kicad0"><div id="J411"></div><div id="J410"></div><div id="J409"></div>J409 J410 J411</td>
+   <td class="td-kicad0">Conn_01x01</td>
+   <td class="td-kicad0">GND</td>
+   <td class="td-user0"></td>
+   <td class="td-user0"></td>
+   <td class="td-user0"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad0">SolderWire-2.5sqmm_1x01_D2.4mm_OD3.6mm</td>
+   <td class="td-user0"></td>
+   <td class="td-gen0">3</td>
+  </tr>
+  <tr id="5">
+   <td class="td-gen1">6</td>
+   <td class="td-kicad1"><div id="J101"></div>J101</td>
+   <td class="td-kicad1">Conn_02x20_Odd_Even</td>
+   <td class="td-kicad1">GPIO0</td>
+   <td class="td-user1"></td>
+   <td class="td-user1"></td>
+   <td class="td-user1"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad1">PinSocket_2x20_P2.54mm_Vertical</td>
+   <td class="td-user1"></td>
+   <td class="td-gen1">1</td>
+  </tr>
+  <tr id="6">
+   <td class="td-gen0">7</td>
+   <td class="td-kicad0"><div id="J408"></div><div id="J407"></div><div id="J406"></div><div id="J405"></div><div id="J404"></div><div id="J403"></div><div id="J402"></div><div id="J401"></div>J401 J402 J403 J404 J405 J406 J407 J408</td>
+   <td class="td-kicad0">Conn_01x02</td>
+   <td class="td-kicad0">OUT1</td>
+   <td class="td-user0"></td>
+   <td class="td-user0"></td>
+   <td class="td-user0"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad0">SolderWire-2.5sqmm_1x02_P7.2mm_D2.4mm_OD3.6mm</td>
+   <td class="td-user0"></td>
+   <td class="td-gen0">8</td>
+  </tr>
+  <tr id="7">
+   <td class="td-gen1">8</td>
+   <td class="td-kicad1"><div id="Q416"></div><div id="Q415"></div><div id="Q414"></div><div id="Q413"></div><div id="Q408"></div><div id="Q407"></div><div id="Q406"></div><div id="Q405"></div>Q405 Q406 Q407 Q408 Q413 Q414 Q415 Q416</td>
+   <td class="td-kicad1">BC850</td>
+   <td class="td-kicad1">BC850</td>
+   <td class="td-user1"></td>
+   <td class="td-user1"></td>
+   <td class="td-user1"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad1">SOT-23</td>
+   <td class="td-user1"></td>
+   <td class="td-gen1">8</td>
+  </tr>
+  <tr id="8">
+   <td class="td-gen0">9</td>
+   <td class="td-kicad0"><div id="Q412"></div><div id="Q411"></div><div id="Q410"></div><div id="Q409"></div><div id="Q404"></div><div id="Q403"></div><div id="Q402"></div><div id="Q401"></div>Q401 Q402 Q403 Q404 Q409 Q410 Q411 Q412</td>
+   <td class="td-kicad0">BC860</td>
+   <td class="td-kicad0">BC860</td>
+   <td class="td-user0"></td>
+   <td class="td-user0"></td>
+   <td class="td-user0"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad0">SOT-23</td>
+   <td class="td-user0"></td>
+   <td class="td-gen0">8</td>
+  </tr>
+  <tr id="9">
+   <td class="td-gen1">10</td>
+   <td class="td-kicad1"><div id="R432"></div><div id="R431"></div><div id="R430"></div><div id="R429"></div><div id="R428"></div><div id="R427"></div><div id="R426"></div><div id="R425"></div><div id="R424"></div><div id="R423"></div><div id="R422"></div><div id="R421"></div><div id="R420"></div><div id="R419"></div><div id="R418"></div><div id="R417"></div><div id="R416"></div><div id="R415"></div><div id="R414"></div><div id="R413"></div><div id="R412"></div><div id="R411"></div><div id="R410"></div><div id="R409"></div><div id="R408"></div><div id="R407"></div><div id="R406"></div><div id="R405"></div><div id="R404"></div><div id="R403"></div><div id="R402"></div><div id="R401"></div><div id="R324"></div><div id="R323"></div><div id="R322"></div><div id="R321"></div><div id="R320"></div><div id="R319"></div><div id="R318"></div><div id="R317"></div><div id="R316"></div><div id="R315"></div><div id="R314"></div><div id="R313"></div><div id="R312"></div><div id="R311"></div><div id="R310"></div><div id="R309"></div><div id="R308"></div><div id="R307"></div><div id="R306"></div><div id="R305"></div><div id="R304"></div><div id="R303"></div><div id="R302"></div><div id="R301"></div><div id="R224"></div><div id="R223"></div><div id="R222"></div><div id="R221"></div><div id="R220"></div><div id="R219"></div><div id="R218"></div><div id="R217"></div><div id="R216"></div><div id="R215"></div><div id="R214"></div><div id="R213"></div><div id="R212"></div><div id="R211"></div><div id="R210"></div><div id="R209"></div><div id="R208"></div><div id="R207"></div><div id="R206"></div><div id="R205"></div><div id="R204"></div><div id="R203"></div><div id="R202"></div><div id="R201"></div>R201 R202 R203 R204 R205 R206 R207 R208 R209 R210 R211 R212 R213 R214 R215 R216 R217 R218 R219 R220 R221 R222 R223 R224 R301 R302 R303 R304 R305 R306 R307 R308 R309 R310 R311 R312 R313 R314 R315 R316 R317 R318 R319 R320 R321 R322 R323 R324 R401 R402 R403 R404 R405 R406 R407 R408 R409 R410 R411 R412 R413 R414 R415 R416 R417 R418 R419 R420 R421 R422 R423 R424 R425 R426 R427 R428 R429 R430 R431 R432</td>
+   <td class="td-kicad1">R</td>
+   <td class="td-kicad1">1 MΩ</td>
+   <td class="td-user1"></td>
+   <td class="td-user1"></td>
+   <td class="td-user1"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad1">R_0402_1005Metric</td>
+   <td class="td-user1"></td>
+   <td class="td-gen1">80</td>
+  </tr>
+  <tr id="10">
+   <td class="td-gen0">11</td>
+   <td class="td-kicad0"><div id="U304"></div><div id="U303"></div><div id="U302"></div><div id="U301"></div><div id="U204"></div><div id="U203"></div><div id="U202"></div><div id="U201"></div>U201 U202 U203 U204 U301 U302 U303 U304</td>
+   <td class="td-kicad0">TLV3601DCKR</td>
+   <td class="td-kicad0">GS8743-CR</td>
+   <td class="td-user0"></td>
+   <td class="td-user0"></td>
+   <td class="td-user0"><a href="http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name="></a></td>
+   <td class="td-kicad0">SOT-353_SC-70-5</td>
+   <td class="td-user0"></td>
+   <td class="td-gen0">8</td>
+  </tr>
+ </tbody>
+</table>
+<table class="color-ref">
+<tr><th>Color reference:</th></tr>
+<tr><td class="td-kicad0">KiCad Fields (default)</td></tr>
+<tr><td class="td-gen0">Generated Fields</td></tr>
+<tr><td class="td-user0">User Fields</td></tr>
+</table>
+<script charset="utf-8">
+  var TGSort = window.TGSort || function(n) {
+    "use strict";
+    function r(n) { return n ? n.length : 0 }
+    function t(n, t, e, o = 0) { for (e = r(n); o < e; ++o) t(n[o], o) }
+    function e(n) { return n.split("").reverse().join("") }
+    function o(n) {
+      var e = n[0];
+      return t(n, function(n) {
+        for (; !n.startsWith(e);) e = e.substring(0, r(e) - 1)
+      }), r(e)
+    }
+    function u(n, r, e = []) {
+      return t(n, function(n) {
+        r(n) && e.push(n)
+      }), e
+    }
+    var a = parseFloat;
+    function i(n, r) {
+      return function(t) {
+        var e = "";
+        return t.replace(n, function(n, t, o) {
+          return e = t.replace(r, "") + "." + (o || "").substring(1)
+        }), a(e)
+      }
+    }
+    var s = i(/^(?:\s*)([+-]?(?:\d+)(?:,\d{3})*)(\.\d*)?$/g, /,/g),
+      c = i(/^(?:\s*)([+-]?(?:\d+)(?:\.\d{3})*)(,\d*)?$/g, /\./g);
+    function f(n) {
+      var t = a(n);
+      return !isNaN(t) && r("" + t) + 1 >= r(n) ? t : NaN
+    }
+    function d(n) {
+      var e = [],
+        o = n;
+      return t([f, s, c], function(u) {
+        var a = [],
+          i = [];
+        t(n, function(n, r) {
+          r = u(n), a.push(r), r || i.push(n)
+        }), r(i) < r(o) && (o = i, e = a)
+      }), r(u(o, function(n) {
+        return n == o[0]
+      })) == r(o) ? e : []
+    }
+    function v(n) {
+      if ("TABLE" == n.nodeName) {
+        for (var a = function(r) {
+            var e, o, u = [],
+              a = [];
+            return function n(r, e) {
+              e(r), t(r.childNodes, function(r) {
+                n(r, e)
+              })
+            }(n, function(n) {
+              "TR" == (o = n.nodeName) ? (e = [], u.push(e), a.push(n)) : "TD" != o && "TH" != o || e.push(n)
+            }), [u, a]
+          }(), i = a[0], s = a[1], c = r(i), f = c > 1 && r(i[0]) < r(i[1]) ? 1 : 0, v = f + 1, p = i[f], h = r(p), l = [], g = [], N = [], m = v; m < c; ++m) {
+          for (var T = 0; T < h; ++T) {
+            r(g) < h && g.push([]);
+            var C = i[m][T],
+              L = C.textContent || C.innerText || "";
+            g[T].push(L.trim())
+          }
+          N.push(m - v)
+        }
+        t(p, function(n, t) {
+          l[t] = 0;
+          var a = n.classList;
+          a.add("tg-sort-header"), n.addEventListener("click", function() {
+            var n = l[t];
+            ! function() {
+              for (var n = 0; n < h; ++n) {
+                var r = p[n].classList;
+                r.remove("tg-sort-asc"), r.remove("tg-sort-desc"), l[n] = 0
+              }
+            }(), (n = 1 == n ? -1 : +!n) && a.add(n > 0 ? "tg-sort-asc" : "tg-sort-desc"), l[t] = n;
+            var i, f = g[t],
+              m = function(r, t) {
+                return n * f[r].localeCompare(f[t]) || n * (r - t)
+              },
+              T = function(n) {
+                var t = d(n);
+                if (!r(t)) {
+                  var u = o(n),
+                    a = o(n.map(e));
+                  t = d(n.map(function(n) {
+                    return n.substring(u, r(n) - a)
+                  }))
+                }
+                return t
+              }(f);
+            (r(T) || r(T = r(u(i = f.map(Date.parse), isNaN)) ? [] : i)) && (m = function(r, t) {
+              var e = T[r],
+                o = T[t],
+                u = isNaN(e),
+                a = isNaN(o);
+              return u && a ? 0 : u ? -n : a ? n : e > o ? n : e < o ? -n : n * (r - t)
+            });
+            var C, L = N.slice();
+            L.sort(m);
+            for (var E = v; E < c; ++E)(C = s[E].parentNode).removeChild(s[E]);
+            for (E = v; E < c; ++E) C.appendChild(s[v + L[E - v]])
+          })
+        })
+      }
+    }
+    n.addEventListener("DOMContentLoaded", function() {
+      for (var t = n.getElementsByClassName("content-table"), e = 0; e < r(t); ++e) try {
+        v(t[e])
+      } catch (n) {}
+    })
+  }(document)
+</script>
+</body></html>

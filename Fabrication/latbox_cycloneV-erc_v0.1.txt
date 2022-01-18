@@ -1,0 +1,11 @@
+ERC report (Wed Jan 19 11:25:03 2022, Encoding UTF8)
+
+***** Sheet /
+
+***** Sheet /DI1/
+
+***** Sheet /DI2/
+
+***** Sheet /DO1/
+
+ ** ERC messages: 0  Errors 0  Warnings 0
