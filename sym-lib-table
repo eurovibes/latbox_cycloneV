@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name "il710")(type "KiCad")(uri "${KIPRJMOD}/il710.kicad_sym")(options "")(descr ""))
   (lib (name "tlv360x")(type "KiCad")(uri "${KIPRJMOD}/tlv360x.kicad_sym")(options "")(descr ""))
+  (lib (name "eurovibes")(type "KiCad")(uri "${KIPRJMOD}/eurovibes.kicad_sym")(options "")(descr ""))
 )

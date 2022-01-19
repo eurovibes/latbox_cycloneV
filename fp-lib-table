@@ -1,3 +1,4 @@
 (fp_lib_table
   (lib (name "TE-BNC")(type "KiCad")(uri "${KIPRJMOD}/TE-BNC.pretty")(options "")(descr ""))
+  (lib (name "eurovibes")(type "KiCad")(uri "${KIPRJMOD}/eurovibes.pretty")(options "")(descr ""))
 )
